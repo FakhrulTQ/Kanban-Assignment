@@ -1,28 +1,31 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <the-header mainTitle="Kanban Board"></the-header>
+    <stored-task :tasks="storedTask"></stored-task>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import StoredTask from "./components/task/StoredTask.vue";
+import TheHeader from "./components/layout/TheHeader.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    StoredTask,
+    TheHeader,
+  },
+  data() {
+    return {
+      storedTask: [
+        { id: "s", title: "Sleep", desc: "Sleep 12 hours", type: "todo" },
+        { id: "e", title: "Eat", desc: "Eat more", type: "done" },
+      ],
+    };
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="scss">
+@import "~@/assets/scss/vendors/bootstrap-vue/index";
 </style>
