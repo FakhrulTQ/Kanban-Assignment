@@ -3,9 +3,10 @@
     <task-item
       v-for="task in tasks"
       :key="task.id"
+      :id="task.id"
       :title="task.title"
       :desc="task.desc"
-      :type="task.type"
+      :types="task.types"
     ></task-item>
   </ul>
 </template>
@@ -14,10 +15,10 @@
 import TaskItem from "./TaskItem.vue";
 
 export default {
-    props: ['tasks'],
+    inject: ['tasks'],
     components: {
         TaskItem
-    }
+    },
 };
 </script>
 

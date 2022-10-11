@@ -1,31 +1,28 @@
 <template>
   <div>
     <the-header mainTitle="Kanban Board"></the-header>
-    <stored-task :tasks="storedTask"></stored-task>
+    <the-task></the-task>
   </div>
 </template>
 
 <script>
-import StoredTask from "./components/task/StoredTask.vue";
-import TheHeader from "./components/layout/TheHeader.vue";
+import TheHeader from "./components/layout/TheHeader";
+import TheTask from "./components/task/TheTask";
 
 export default {
   name: "App",
   components: {
-    StoredTask,
     TheHeader,
+    TheTask,
   },
   data() {
-    return {
-      storedTask: [
-        { id: "s", title: "Sleep", desc: "Sleep 12 hours", type: "todo" },
-        { id: "e", title: "Eat", desc: "Eat more", type: "done" },
-      ],
-    };
+    return {};
   },
 };
 </script>
 
 <style lang="scss">
 @import "~@/assets/scss/vendors/bootstrap-vue/index";
+
+
 </style>
