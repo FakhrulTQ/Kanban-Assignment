@@ -3,14 +3,13 @@
     <base-card>
       <add-task></add-task>
     </base-card>
-    <component :is="selectedTab"></component>
+    <stored-task></stored-task>
   </div>
 </template>
 
 <script>
 import StoredTask from "./StoredTask.vue";
 import AddTask from "./AddTask.vue";
-// import BaseButton from "../UI/BaseButton.vue";
 import BaseCard from "../UI/BaseCard.vue";
 
 
@@ -19,15 +18,13 @@ export default {
   components: {
     StoredTask,
     AddTask,
-    // BaseButton,
     BaseCard,
   },
   data() {
     return {
-      selectedTab: "stored-task",
       storedTask: [
         { id: "s", title: "Sleep", desc: "Sleep 12 hours", types: "Todo" },
-        { id: "e", title: "Eat", desc: "Eat more", types: "Done" },
+        { id: "e", title: "Eat", desc: "Eat more", types: "Todo" },
       ],
     };
   },
@@ -46,10 +43,7 @@ export default {
         desc: desc,
         types: types,
       };
-      // if (this.newTask) {
-      //   Swal.fire({})
-      // }
-      this.storedTask.unshift(newTask);
+      this.storedTask.push(newTask);
     },
     removeTask(taskId) {
       const taskIndex = this.storedTask.findIndex((task) => task.id === taskId);

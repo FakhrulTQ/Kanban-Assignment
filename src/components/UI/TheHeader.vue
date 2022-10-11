@@ -12,11 +12,10 @@ export default {
 
 <style lang="scss" scoped>
 header {
-  width: 100%;
-  height: 5rem;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 1rem;
+  margin-top: 1.5rem;
 }
 </style>

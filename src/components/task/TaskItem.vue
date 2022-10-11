@@ -2,19 +2,24 @@
   <b-container class="mt-5">
     <b-row class="mt-4">
       <b-col>
-        <base-card>
-          <header>
-            <h3>{{ title }}</h3>
+        <base-card class="taskCard">
+          <header class="taskCard__header">
+            <h3 class="taskCard__title">{{ title }}</h3>
             <b-icon-trash
-              class="buttonDelete"
+              class="taskCard__buttonDelete"
               font-scale="1.5"
               @click="deleteTask(id)"
             ></b-icon-trash>
           </header>
-          <p>{{ desc }}</p>
-          <b-badge ref="toggleType" :class="types" @click="toggleSet()">
+          <p class="taskCard__desc">{{ desc }}</p>
+          <div
+            class="badge"
+            ref="toggleType"
+            :class="{ Done: isDone, Todo: !isDone }"
+            @click="toggleSet()"
+          >
             {{ types }}
-          </b-badge>
+          </div>
         </base-card>
       </b-col>
     </b-row>
@@ -26,6 +31,11 @@ import BaseCard from "../UI/BaseCard.vue";
 import { BIconTrash } from "bootstrap-vue";
 export default {
   inject: ["deleteTask"],
+  data() {
+    return {
+      isDone: false,
+    };
+  },
   components: {
     BaseCard,
     BIconTrash,
@@ -47,42 +57,24 @@ export default {
       required: true,
     },
   },
-  // emits: ['toggle-type'],
   methods: {
     toggleSet() {
-      if (this.types === 'Todo') {
-        this.$refs.toggleType.innerText = 'Done'
+      if (this.types === "Todo") {
+        this.isDone = true;
+        this.$refs.toggleType.innerText = "Done";
       }
     },
   },
-  // computed: {
-  //   text() {
-  //     return this.types.toUpperCase()
-  //   }
-  // }
 };
 </script>
 
-<style scoped>
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.buttonDelete {
-  color: rgb(255, 93, 93);
-  cursor: pointer;
-}
-
+<style lang="scss" scoped>
 .badge {
   background-color: #ccc;
-  font-size: 1rem;
   color: #252525;
-  border-radius: 30px;
+  border-radius: 2rem;
   padding: 0.3rem 1rem;
   display: inline-block;
-  margin-right: 0.5rem;
   cursor: pointer;
 }
 
@@ -94,5 +86,29 @@ header {
 .Done {
   background-color: #00a775;
   color: white;
+}
+
+.taskCard {
+  max-width: 25rem;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  &__title {
+    font-weight: bold;
+  }
+
+  &__desc {
+    font-weight: 500;
+    font-size: 1.2rem;
+  }
+
+  &__buttonDelete {
+    color: rgb(255, 93, 93);
+    cursor: pointer;
+  }
 }
 </style>

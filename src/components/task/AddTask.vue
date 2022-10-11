@@ -1,6 +1,6 @@
 <template>
   <b-form @submit.prevent="submitTask">
-    <div class="form-group">
+    <div>
       <label for="title">Task</label>
       <b-form-input
         type="text"
@@ -31,7 +31,7 @@
         disabled
       />
     </div>
-    <div class="form-group">
+    <div>
       <b-button class="btnSubmit" type="submit">Add Task</b-button>
     </div>
   </b-form>
@@ -55,7 +55,7 @@ export default {
         const enteredTitle = this.$refs.titleIn.value;
         const enteredDesc = this.$refs.descIn.value;
         const enteredType = this.$refs.typeIn.value;
-        if (enteredTitle === "") {
+        if (enteredTitle === "" || enteredDesc === "") {
           Swal.fire("Fill up the form.");
         } else {
           this.addTask(enteredTitle, enteredDesc, enteredType);
@@ -80,8 +80,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-button {
-  background-color: rgb(52, 164, 255);
-  border: none;
+
+form {
+  color: black;
+  font-weight: bold;
 }
+
+.btnSubmit {
+  background-color: rgb(0, 92, 167);
+  border: none;
+  border-radius: 1rem;
+  font-weight: 500;
+}
+
 </style>

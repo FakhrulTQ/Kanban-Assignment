@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import TheHeader from "./components/layout/TheHeader";
+import TheHeader from "./components/UI/TheHeader";
 import TheTask from "./components/task/TheTask";
 
 export default {
@@ -23,6 +23,8 @@ export default {
 
 <style lang="scss">
 @import "~@/assets/scss/vendors/bootstrap-vue/index";
-
+body {
+  background-color: rgb(248, 248, 248);
+}
 
 </style>
