@@ -1,14 +1,14 @@
 <template>
-  <ul>
-    <task-item
-      v-for="task in tasks"
-      :key="task.id"
-      :id="task.id"
-      :title="task.title"
-      :desc="task.desc"
-      :types="task.types"
-    ></task-item>
-  </ul>
+  <div>
+    <div v-for="task in tasks" :key="task.id">
+      <task-item
+        :id="task.id"
+        :title="task.title"
+        :desc="task.desc"
+        :types="task.type"
+      ></task-item>
+    </div>
+  </div>
 </template>
 
 <script>

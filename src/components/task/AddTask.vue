@@ -38,8 +38,8 @@
 </template>
 
 <script>
-import Swal from "sweetalert2";
-import db from "../../db/db.js";
+// import Swal from "sweetalert2";
+// import db from "../../db/db.js";
 
 export default {
   data() {
@@ -50,31 +50,38 @@ export default {
     };
   },
   methods: {
-    async submitTask() {
+    submitTask() {
       try {
         const enteredTitle = this.$refs.titleIn.value;
         const enteredDesc = this.$refs.descIn.value;
         const enteredType = this.$refs.typeIn.value;
-        if (enteredTitle === "" || enteredDesc === "") {
-          Swal.fire("Fill up the form.");
-        } else {
-          this.addTask(enteredTitle, enteredDesc, enteredType);
-        }
-        console.log(`${enteredTitle}`);
-        console.log(`${enteredDesc}`);
-        console.log(`${enteredType}`);
 
-        const id = await db.tasks.add({
-          title: enteredTitle,
-          desc: enteredDesc,
-          type: enteredType,
-        });
-        console.log(`${id}`);
+        const listInputTask = [enteredTitle, enteredDesc, enteredType];
+
+        this.$emit('submit-task', listInputTask);
+
+        // if (enteredTitle === "" || enteredDesc === "") {
+        //   Swal.fire("Fill up the form.");
+        // } else {
+        //   this.addTask(enteredTitle, enteredDesc, enteredType);
+        // }
+        // console.log(`${enteredTitle}`);
+        // console.log(`${enteredDesc}`);
+        // console.log(`${enteredType}`);
+
+        // const id = await db.tasks.add({
+        //   id: new Date().getTime(),
+        //   title: enteredTitle,
+        //   desc: enteredDesc,
+        //   type: enteredType,
+        // });
+        // console.log(`${id}`);
       } catch (error) {
         console.log("fail");
       }
     },
   },
+  emit: ['submit-task'],
   inject: ["addTask"],
 };
 </script>

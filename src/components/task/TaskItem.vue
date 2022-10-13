@@ -42,7 +42,7 @@ export default {
   },
   props: {
     id: {
-      type: String,
+      type: Number,
     },
     title: {
       type: String,
@@ -65,6 +65,15 @@ export default {
       }
     },
   },
+  mounted(){
+    console.log('----------------Data 1----------------')
+    console.log(this.id);
+    console.log(this.title);
+    console.log(this.desc);
+    console.log(this.types);
+    console.log('----------------Data 1----------------')
+
+  }
 };
 </script>
 
